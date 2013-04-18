@@ -4,23 +4,19 @@ var request = require('request'),
     http = require('http'),
     express = require('express'),
     util = require('util');
-    SolrSecurityProxy = require('../solr-security-proxy.js'); 
+    SolrSecurityProxy = require('../solr-security-proxy.js');
 
-// start fake solr on port 8080
-var startBackendServer = function(port) { 
-  var app = express();
-  app.use(express.logger('dev'))
-  app.get(/solr.*/, function(req, res){
-    res.send("GET processed\n");
-  });
-  app.post(/solr.*/, function(req, res){
-    res.send("POST / - processed\n");
-  });
-  app.listen(port);
-  util.puts('mock-solr: listening on port ' + port);
+var startSimpleBackendServer = function(port) {
+  http.createServer(function (req, res) {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write('Fake SOLR server processed request');
+    res.end();
+  }).listen(port);
+  util.puts('fake-solr-back: listening on port ' + port);
 }
 
-startBackendServer(8080);
+startSimpleBackendServer(8080);
+SolrSecurityProxy.options.listenPort = 8008;
 SolrSecurityProxy.start();
 
 suite = vows.describe('solr-security-proxy')
@@ -40,12 +36,12 @@ suite = vows.describe('solr-security-proxy')
 function respondsWith(status) {
   var executeRequest = function() {
     // this.context.name should be of form "GET /solr"
-    var contextNameTokens = this.context.name.split(/ +/), 
+    var contextNameTokens = this.context.name.split(/ +/),
         requestOptions = {
           method: contextNameTokens[0].toLowerCase(),
           uri: 'http://localhost:8008' + contextNameTokens[1]
         };
-    request(requestOptions, this.callback); //executes http request specified by context
+    request(requestOptions, this.callback); //executes http request specified by contex
   };
 
   var context = {};

@@ -20,7 +20,6 @@
     "http-proxy": "0.8.0"
   },
   "devDependencies": {
-    "express": "3.x",
     "api-easy": "0.3.7",
     "request": "2.16.6",
     "nodemon": "0.7.6",
