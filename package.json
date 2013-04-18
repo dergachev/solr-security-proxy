@@ -1,0 +1,33 @@
+{
+  "name": "solr-security-proxy",
+  "description": 
+    "reverse proxy to secure solr, rejecting requests that might modify the solr index.",
+  "keywords": ["solr", "security", "ajax-solr", "server"],
+  "version": "0.0.1",
+  "author": "Alex Dergachev <alex@evolvingweb.ca>",
+  "bugs": {
+    "url": "https://github.com/dergachev/solr-security-proxy/issues"
+  },
+  "scripts": {
+    "start": "node solr-security-proxy.js",
+    "test": "./node_modules/.bin/vows test/test-*.js --spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dergachev/solr-security-proxy.git"
+  },
+  "dependencies": {
+    "http-proxy": "0.8.0"
+  },
+  "devDependencies": {
+    "express": "3.x",
+    "api-easy": "0.3.7",
+    "request": "2.16.6",
+    "nodemon": "0.7.6",
+    "vows": "0.7.0"
+  },
+  "engines": {
+    "node": ">=0.6.12"
+  }, 
+  "license": "GPL"
+}
