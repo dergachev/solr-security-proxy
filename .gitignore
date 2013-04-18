@@ -12,3 +12,7 @@ logs
 results
 
 npm-debug.log
+
+.vagrant
+*.swp
+node_modules/
