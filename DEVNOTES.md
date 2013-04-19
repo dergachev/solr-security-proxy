@@ -16,6 +16,7 @@ Misc resources I drew upon while learning node.js and writing this script.
 
 * https://npmjs.org/doc/json.html
 * https://github.com/nodeapps/http-server/blob/master/package.json
+* https://github.com/madhums/nodejs-express-mongoose-demo/blog/master/package.json (and general app layout)
 * https://npmjs.org/ (looked at top modules for examples of how to package)
 
 ## Testing 
