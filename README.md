@@ -9,22 +9,10 @@ and similar applications.
 Installation and usage
 ----------------------
 
-First, install the dependencies:
+To install solr-security-proxy via npm:
 
 ```bash
-npm install
-```
-
-Now run the tests:
-
-```
-npm test # run the test once
-```
-
-To start the proxy server with default options, and have it auto-restart on changes to code, do the following:
-
-```bash
-npm start 
+npm install solr-security-proxy
 ```
 
 To start the server from your own app, potentially overriding some default options:
@@ -48,33 +36,6 @@ var defaultOptions = {
   }
 };
 ```
-
-Development
------------
-
-The accompanying `Vagrantfile` sets up an ubuntu-based node.js stack:
-To use it to develop the solr-security-proxy:
-
-```bash
-vagrant up
-vagrant ssh
-cd /vagrant
-
-# to run the tests
-npm test
-
-# ... or continuously (-L is important for Vagrant compatibility)
-./node_modules/.bin/nodemon -L test/test-solr-security-proxy.js 
-
-# to start the server on the default settings
-npm start
-
-# ... or continuously (-L is important for Vagrant compatibility)
-./node_modules/.bin/nodemon -L solr-security-proxy.js
-```
-
-For my notes on learning node.js development while building this module, see
-[DEVNOTES.md](https://github.com/dergachev/solr-security-proxy/blob/master/DEVNOTES.md)
 
 How it works
 ------------
@@ -159,3 +120,59 @@ For more info about solr security issues, see:
 * http://wiki.apache.org/solr/SolrRequestHandler
 
 For other solr security proxies, see https://github.com/evolvingweb/ajax-solr/wiki/Solr-proxies 
+
+Development
+-----------
+
+To work on solr-security-proxy, install it as follows:
+
+```bash
+git clone https://github.com/dergachev/solr-security-proxy.git
+cd solr-security-proxy
+sudo npm link # installs this version via global symlink
+```
+
+Now you can reference your cloned version in a node app:
+
+```bash
+cd ~/my-node-app
+npm link solr-security-proxy
+```
+
+Now run the tests:
+
+```
+npm test # run the test once
+```
+
+To start the proxy server with default options, and have it auto-restart on changes to code, do the following:
+
+```bash
+npm start 
+```
+
+### Vagrant
+
+Don't have node/npm installed? The accompanying `Vagrantfile` sets up an ubuntu-based node.js stack:
+To use it to develop the solr-security-proxy:
+
+```bash
+vagrant up
+vagrant ssh
+cd /vagrant
+
+# to run the tests
+npm test
+
+# ... or continuously (-L is important for Vagrant compatibility)
+./node_modules/.bin/nodemon -L test/test-solr-security-proxy.js 
+
+# to start the server on the default settings
+npm start
+
+# ... or continuously (-L is important for Vagrant compatibility)
+./node_modules/.bin/nodemon -L solr-security-proxy.js
+```
+
+For my notes on learning node.js development while building this module, see
+[DEVNOTES.md](https://github.com/dergachev/solr-security-proxy/blob/master/DEVNOTES.md)
