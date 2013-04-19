@@ -10,7 +10,6 @@ var startSimpleBackendServer = function(port) {
     res.write('Fake SOLR server processed request');
     res.end();
   }).listen(port);
-  util.puts('fake-solr-back: listening on port ' + port);
 }
 
 startSimpleBackendServer(8080);

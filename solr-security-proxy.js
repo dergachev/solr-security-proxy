@@ -77,7 +77,6 @@ SolrSecurityProxy.createServer = function(options) {
 SolrSecurityProxy.start = function(port, options) {
   var server = SolrSecurityProxy.createServer(options);
   server.listen(port);
-  util.puts('solr-security-proxy: listening on port ' + port);
   return server;
 }
 
