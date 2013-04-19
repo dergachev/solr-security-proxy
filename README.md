@@ -1,7 +1,7 @@
 solr-security-proxy
 ===================
 
-Node.js based reverse proxy to make a solr instance read-only, rejecting requests that have the potential to modify the solr index. 
+Node.js based reverse proxy to make a solr instance read-only, rejecting requests that have the potential to modify the solr index.
 
 Intended for use with the [AJAX-Solr library](https://github.com/evolvingweb/ajax-solr)
 and similar applications.
@@ -47,26 +47,26 @@ Without this proxy, the following requests can cause trouble:
 curl http://example.com:8080/solr/admin
 
 # addition of a new document, via POST to /solr/update
-curl http://example.com:8080/solr/update?comit=true \
-  -H "Content-Type: text/xml" \
+curl http://example.com:8080/solr/update?comit=true
+  -H "Content-Type: text/xml"
   --data-binary '<add><doc><field name="id">testdoc</field></doc></add>'
 
 # deleting of all documents, via POST to /solr/update
-curl http://example.com:8080/solr/update?comit=true \
-  -H "Content-Type: text/xml" \
+curl http://example.com:8080/solr/update?comit=true
+  -H "Content-Type: text/xml"
   --data-binary '<delete><query>*:*</query></delete>'
 
 # deleting all the documents, via GET to /update?stream.body=<delete><query>*:*</query></delete>&commit=true
-curl http://example.com:8080/solr/update?stream.body=%3Cdelete%3E%3Cquery%3E*%3A*%3C%2Fquery%3E%3C%2Fdelete%3E%0A  
+curl http://example.com:8080/solr/update?stream.body=%3Cdelete%3E%3Cquery%3E*%3A*%3C%2Fquery%3E%3C%2Fdelete%3E%0A
 curl http://example.com:8080/solr/update?stream.body=%3Ccommit/%3E
 
-# Triggering remote streaming via GET to /solr/select\
-#   ?stream.url=http://example.com:8080/solr/update?commit=true\
+# Triggering remote streaming via GET to /solr/selec
+#   ?stream.url=http://example.com:8080/solr/update?commit=true
 #   &stream.body=<delete><query>*:*</query></delete>
 # See https://issues.apache.org/jira/browse/SOLR-2854
 curl http://example.com:8080/solr/select?q=*:*&indent=on&wt=ruby&rows=2&stream.url=http%3A%2F%2Fexample.com%3A8080%2Fsolr%2Fupdate%3Fcommit%3Dtruetream.body%3D%3Cdelete%3E%3Cquery%3E*%3A*%3C%2Fquery%3E%3C%2Fdelete%3E
 
-# deleting of all documents, via GET to 
+# deleting of all documents, via GET to
 #   /solr/select?qt=/update&stream.body=<delete><query>*:*</query></delete>
 # See https://issues.apache.org/jira/browse/SOLR-1233#comment-13169425
 # See https://issues.apache.org/jira/browse/SOLR-3161
@@ -94,7 +94,7 @@ At the moment, the proxy blacklists the parameters `qt` and `stream.*`. It's
 likely considerably safer instead whitelist only the parameters your
 application uses, instead.
 
-Furthermore, this proxy does not guard against simple D.O.S. attacks against
+Furthermore, this proxy does not guard against simple D.O.S. attacks agains
 solr, for example see [this post on Solr DOS by David
 Smiley](https://groups.google.com/d/msg/ajax-solr/zhrG-CncrRE/HsyRwmR4mEsJ).
 
@@ -119,15 +119,15 @@ For more info about solr security issues, see:
 * https://issues.apache.org/jira/browse/SOLR-3161 (?qt=/update hole, part 2)
 * http://wiki.apache.org/solr/SolrRequestHandler
 
-For other solr security proxies, see https://github.com/evolvingweb/ajax-solr/wiki/Solr-proxies 
+For other solr security proxies, see https://github.com/evolvingweb/ajax-solr/wiki/Solr-proxies
 
-Development
+Developmen
 -----------
 
 To work on solr-security-proxy, install it as follows:
 
 ```bash
-git clone https://github.com/dergachev/solr-security-proxy.git
+git clone https://github.com/dergachev/solr-security-proxy.gi
 cd solr-security-proxy
 sudo npm link # installs this version via global symlink
 ```
@@ -148,10 +148,10 @@ npm test # run the test once
 To start the proxy server with default options, and have it auto-restart on changes to code, do the following:
 
 ```bash
-npm start 
+npm star
 ```
 
-### Vagrant
+### Vagran
 
 Don't have node/npm installed? The accompanying `Vagrantfile` sets up an ubuntu-based node.js stack:
 To use it to develop the solr-security-proxy:
@@ -159,20 +159,25 @@ To use it to develop the solr-security-proxy:
 ```bash
 vagrant up
 vagrant ssh
-cd /vagrant
-
-# to run the tests
-npm test
-
-# ... or continuously (-L is important for Vagrant compatibility)
-./node_modules/.bin/nodemon -L test/test-solr-security-proxy.js 
-
-# to start the server on the default settings
-npm start
-
-# ... or continuously (-L is important for Vagrant compatibility)
-./node_modules/.bin/nodemon -L solr-security-proxy.js
+cd /vagran
+npm test # run the tests
 ```
+
+### nodemon
+
+For automatic restarting of the server upon code changes, install and run nodemon:
+
+```bash
+sudo npm install -g nodemon # install it globally
+# runs the proxy (restarting upon file changes)
+nodemon -L solr-security-proxy.js
+# runs the tests (re-running upon code changes)
+nodemon -L test/test-solr-security-proxy.js
+```
+
+Note that for nodemon to work under Vagrant, "-L" (--legacy) is required.
+
+On VM suspend, nodemon annoyingly goes into the background. Kill it via `pkill -f nodemon`
 
 For my notes on learning node.js development while building this module, see
 [DEVNOTES.md](https://github.com/dergachev/solr-security-proxy/blob/master/DEVNOTES.md)

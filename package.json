@@ -21,9 +21,7 @@
     "http-proxy": "0.10.1"
   },
   "devDependencies": {
-    "api-easy": "0.3.7",
     "request": "2.16.6",
-    "nodemon": "0.7.6",
     "vows": "0.7.0"
   },
   "engines": {
