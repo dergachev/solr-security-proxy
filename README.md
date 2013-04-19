@@ -21,7 +21,7 @@ Now run the tests:
 npm test # run the test once
 ```
 
-To start the proxy server and have it auto-restart on changes to code, do the following:
+To start the proxy server with default options, and have it auto-restart on changes to code, do the following:
 
 ```bash
 npm start 
@@ -31,15 +31,13 @@ To start the server from your own app, potentially overriding some default optio
 
 ```js
 var SolrSecurityProxy = require('solr-security-proxy');
-SolrSecurityProxy.options.listenPort = 8009; // default is 8008
-SolrSecurityProxy.start();
+SolrSecurityProxy.start(8008, {validPaths: ['/solr/core1/select']);
 ```
 
 Here are the default options:
 
 ```js
-SolrSecurityProxy.options = {
-  listenPort: 8008,                     // start proxy on this port
+var defaultOptions = {
   invalidHttpMethods: ['POST'],         // all other HTTP methods (eg GET, HEAD, PUT, etc) will be allowed
   validPaths: ['/solr/select'],         // all other paths will be denied
   invalidParams: ['qt', 'stream'],      // blocks requests with params qt or stream.* (all other params are allowed)

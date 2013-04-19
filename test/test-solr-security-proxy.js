@@ -16,8 +16,7 @@ var startSimpleBackendServer = function(port) {
 }
 
 startSimpleBackendServer(8080);
-SolrSecurityProxy.options.listenPort = 8008;
-SolrSecurityProxy.start();
+SolrSecurityProxy.start(8008);
 
 suite = vows.describe('solr-security-proxy')
             .addBatch({
