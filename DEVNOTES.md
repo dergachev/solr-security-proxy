@@ -11,6 +11,7 @@ Misc resources I drew upon while learning node.js and writing this script.
 * http://docs.nodejitsu.com/articles/javascript-conventions/using-ECMA5-in-nodejs
 * http://nodejs.org/api/http.html#http_http_request_options_callback
 * https://github.com/cloudhead/vows/blob/master/lib/vows.js (copied how options are handled)
+* If I ever want to parse args with node: https://github.com/substack/node-optimist
 
 ## Packaging
 
@@ -35,6 +36,12 @@ Misc resources I drew upon while learning node.js and writing this script.
 * http://vowsjs.org/#-macros (Read all of this!!)
 * http://codyaray.com/2011/09/simple-rest-api-testing-setup-using-vows-js-tobi-and-node-js
 * https://github.com/cloudhead/vows/issues/257 (potential issue)
+
+There's a lot to learn about how node-http-proxiy tests are written:
+
+* https://github.com/nodejitsu/node-http-proxy/blob/master/test/http/http-test.js
+* https://github.com/nodejitsu/node-http-proxy/blob/master/test/helpers/index.js
+* https://github.com/nodejitsu/node-http-proxy/blob/master/test/macros/http.js
 
 ### vows alternatives
 
