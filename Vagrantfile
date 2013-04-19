@@ -17,9 +17,10 @@ Vagrant.configure("2") do |config|
   config.vm.provision :shell, :inline => <<-EOT
     # ubuntu's nodejs package is old, and doesn't bundle npm
     # alternatively, can do the following:
+    #  apt-get -y install python-software-properties
     #  add-apt-repository ppa:chris-lea/node.js  
     #  apt-get update  
-    #  apt-get install nodejs
+    #  apt-get -y install nodejs
     apt-get -y install nodejs
     curl https://npmjs.org/install.sh | clean=yes sh # must run as root, see http://git.io/YipIMQ
     
