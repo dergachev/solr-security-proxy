@@ -6,6 +6,8 @@ Node.js based reverse proxy to make a solr instance read-only, rejecting request
 Intended for use with the [AJAX-Solr library](https://github.com/evolvingweb/ajax-solr)
 and similar applications.
 
+[![Build Status](https://secure.travis-ci.org/dergachev/solr-security-proxy.png)](http://travis-ci.org/dergachev/csolr-security-proxy)
+
 Installation and usage
 ----------------------
 
