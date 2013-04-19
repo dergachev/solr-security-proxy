@@ -38,10 +38,11 @@ Here are the default options:
 
 ```js
 var defaultOptions = {
-  invalidHttpMethods: ['POST'],         // all other HTTP methods (eg GET, HEAD, PUT, etc) will be allowed
-  validPaths: ['/solr/select'],         // all other paths will be denied
-  invalidParams: ['qt', 'stream'],      // blocks requests with params qt or stream.* (all other params are allowed)
-  backend: {                            // proxy to solr at this location
+  invalidHttpMethods: ['POST'],     // all other HTTP methods (eg GET, HEAD, PUT, etc) will be allowed
+  validPaths: ['/solr/select'],     // all other paths will be denied
+  invalidParams: ['qt', 'stream'],  // blocks requests with params qt or stream.* (all other params are allowed)
+  validator: function(){},          // customized validator function; receives (request, options) as arguments
+  backend: {                        // proxy to solr at this location
     host: 'localhost',
     port: 8080
   }
