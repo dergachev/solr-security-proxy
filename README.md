@@ -121,7 +121,7 @@ For more info about solr security issues, see:
 
 For other solr security proxies, see https://github.com/evolvingweb/ajax-solr/wiki/Solr-proxies
 
-Developmen
+Development
 -----------
 
 To work on solr-security-proxy, install it as follows:
@@ -139,19 +139,30 @@ cd ~/my-node-app
 npm link solr-security-proxy
 ```
 
-Now run the tests:
+To run the tests, simply run `npm test`.
+
+If you want to run test-with-solr-instance.js, you need to set the `TEST_SOLR`
+environment variable with the URL to your solr server, as follows:
 
 ```
-npm test # run the test once
+TEST_SOLR=http://127.0.0.1:8081/solr/ npm test
+```
+
+The format is `PROTOCOL://ADDRESS:PORT/SOLR_PATH/` and must be followed
+exactly.  If solr is on a remote machine, the following will set up an SSH
+tunnel for 30 seconds and then run the tests:
+
+```bash
+ssh solrmachine -L 8081:127.0.0.1:8080 -f sleep 30 && TEST_SOLR=http://127.0.0.1:8081/solr/ npm test
 ```
 
 To start the proxy server with default options, and have it auto-restart on changes to code, do the following:
 
 ```bash
-npm star
+npm start
 ```
 
-### Vagran
+### Vagrant
 
 Don't have node/npm installed? The accompanying `Vagrantfile` sets up an ubuntu-based node.js stack:
 To use it to develop the solr-security-proxy:
@@ -159,8 +170,8 @@ To use it to develop the solr-security-proxy:
 ```bash
 vagrant up
 vagrant ssh
-cd /vagran
-npm test # run the tests
+cd /vagrant
+npm test
 ```
 
 ### nodemon
