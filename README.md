@@ -20,18 +20,24 @@ npm install solr-security-proxy
 To start the proxy directly via command-line, run
 
 ```bash
-`npm bin`/solr-security-proxy --port 9090 --backend localhost:8983
-#
-# solr-security-proxy: localhost:9090 --> localhost:8983
+`npm bin`/solr-security-proxy --port 9090 --backend.host 127.0.0.1 --backend.port 8983
 
-`npm bin`/solr-security-proxy --help
-#
-# Usage: node ./node_modules/.bin/solr-security-proxy
-#
-# Options:
-#   --port      Listen on this port                [default: 8008]
-#   --backend   solr connection string, HOST:PORT  [default: "localhost:8080"]
-#   --help, -h  show usage
+# solr-security-proxy: localhost:9090 --> 127.0.0.1:8983
+```
+
+The valid command-line options are as follows:
+
+```
+    Usage: node ./node_modules/.bin/solr-security-proxy
+
+    Options:
+      --port            Listen on this port                         [default: 8008]
+      --backend.port    Solr backend port                           [default: 8080]
+      --backend.host    Solr backend host                           [default: "localhost"]
+      --validPaths      Only allow these paths (comma separated)    [default: "/solr/select"]
+      --invalidParams   Block these query params (comma separated)  [default: "qt,stream"]
+      --invalidMethods  Block these HTTP methods (comma separated)  [default: "POST"]
+      --help, -h        Show usage
 ```
 
 To start the server from your own app, potentially overriding some default options:
@@ -177,7 +183,7 @@ ssh solrmachine -L 8081:127.0.0.1:8080 -f sleep 30 && TEST_SOLR=http://127.0.0.1
 
 ### Vagrant
 
-Don't have node/npm installed? The accompanying `Vagrantfile` sets up an ubuntu-based node.js stack:
+The accompanying `Vagrantfile` sets up an ubuntu-based node.js stack.
 To use it to develop the solr-security-proxy:
 
 ```bash
