@@ -10,6 +10,7 @@ Vagrant.configure("2") do |config|
 
   # provision some standard packages
   config.vm.provision :shell, :inline => <<-EOT
+    apt-get update # needs to run before installing any packages
     apt-get -y install curl git vim
   EOT
 
@@ -18,7 +19,7 @@ Vagrant.configure("2") do |config|
     # ubuntu's nodejs package is old, and doesn't bundle npm
     apt-get -y install python-software-properties
     add-apt-repository ppa:chris-lea/node.js
-    apt-get update
+    apt-get update # needs to run after add-apt-repository
     apt-get -y install nodejs
 
     echo "Running 'cd /vagrant'"
