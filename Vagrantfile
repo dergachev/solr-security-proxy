@@ -22,10 +22,10 @@ Vagrant.configure("2") do |config|
     apt-get -y install nodejs
 
     echo "Running 'cd /vagrant'"
-    cd /vagran
+    cd /vagrant
     echo "Running 'npm install'"
     npm install
     echo "Running 'npm test'"
-    npm tes
+    npm test
   EOT
 end
