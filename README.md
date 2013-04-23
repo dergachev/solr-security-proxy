@@ -62,6 +62,11 @@ var defaultOptions = {
 };
 ```
 
+### Daemontools
+
+For notes on how to setup daemontools to automatically start/restart the proxy, see 
+[DAEMONTOOLS.md](https://github.com/dergachev/solr-security-proxy/blob/master/DAEMONTOOLS.md)
+
 How it works
 ------------
 
