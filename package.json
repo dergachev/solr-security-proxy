@@ -13,12 +13,14 @@
     "start": "node solr-security-proxy.js",
     "test": "./node_modules/.bin/vows test/test-*.js --spec"
   },
+  "bin": "./solr-security-proxy.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/dergachev/solr-security-proxy.git"
   },
   "dependencies": {
-    "http-proxy": "0.10.1"
+    "http-proxy": "0.10.1",
+    "optimist": "0.4.0"
   },
   "devDependencies": {
     "request": "2.16.6",

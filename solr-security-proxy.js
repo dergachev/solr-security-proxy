@@ -1,6 +1,9 @@
+#!/usr/bin/env node
+
 var httpProxy = require('http-proxy'),
     util = require('util'),
     url = require('url'),
+    optimist = require('optimist'),
     SolrSecurityProxy = exports;
 
 /*
@@ -82,5 +85,18 @@ SolrSecurityProxy.start = function(port, options) {
 
 // if invoked directly, (eg "node solr-security-proxy.js"), start automatically
 if (require.main === module) {
-  SolrSecurityProxy.start(8008);
+  var options = {
+    port: { description: "Listen on this port", default: 8008},
+    backend: { description: "solr connection string, HOST:PORT", default: "localhost:8080"},
+    help: { description: "show usage", alias: 'h'}
+  };
+  var argv = optimist.usage('Usage: $0', options).argv
+  var backend = argv.backend.split(':')
+  if (backend.length != 2 || argv.help) {
+    optimist.showHelp();
+  } else {
+    SolrSecurityProxy.start(argv.port, { host: backend[0], backendPort: backend[1]});
+    util.puts("solr-security-proxy: localhost:" + argv.port + " --> " + argv.backend);
+    return;
+  }
 }

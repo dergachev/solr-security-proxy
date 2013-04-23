@@ -17,6 +17,23 @@ To install solr-security-proxy via npm:
 npm install solr-security-proxy
 ```
 
+To start the proxy directly via command-line, run
+
+```bash
+`npm bin`/solr-security-proxy --port 9090 --backend localhost:8983
+#
+# solr-security-proxy: localhost:9090 --> localhost:8983
+
+`npm bin`/solr-security-proxy --help
+#
+# Usage: node ./node_modules/.bin/solr-security-proxy
+#
+# Options:
+#   --port      Listen on this port                [default: 8008]
+#   --backend   solr connection string, HOST:PORT  [default: "localhost:8080"]
+#   --help, -h  show usage
+```
+
 To start the server from your own app, potentially overriding some default options:
 
 ```js
@@ -156,12 +173,6 @@ tunnel for 30 seconds and then run the tests:
 
 ```bash
 ssh solrmachine -L 8081:127.0.0.1:8080 -f sleep 30 && TEST_SOLR=http://127.0.0.1:8081/solr/ npm test
-```
-
-To start the proxy server with default options, and have it auto-restart on changes to code, do the following:
-
-```bash
-npm start
 ```
 
 ### Vagrant
