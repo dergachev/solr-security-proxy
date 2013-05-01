@@ -36,6 +36,7 @@ Misc resources I drew upon while learning node.js and writing this script.
 * http://vowsjs.org/#-macros (Read all of this!!)
 * http://codyaray.com/2011/09/simple-rest-api-testing-setup-using-vows-js-tobi-and-node-js
 * https://github.com/cloudhead/vows/issues/257 (potential issue)
+* https://github.com/reid/pact (vows macros for http testing)
 
 There's a lot to learn about how node-http-proxiy tests are written:
 
