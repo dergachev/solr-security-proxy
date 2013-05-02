@@ -13,8 +13,8 @@ var startSimpleBackendServer = function(port) {
   }).listen(port);
 }
 
-startSimpleBackendServer(8080);
-SolrSecurityProxy.start(8008);
+startSimpleBackendServer(9090);
+SolrSecurityProxy.start(8008, { backend: { port: 9090}});
 
 var batch = vowsHelper.testProxyBatch( 'http://localhost:8008/solr/');
 suite = vows.describe('test-with-mock-backend').addBatch(batch).export(module);
