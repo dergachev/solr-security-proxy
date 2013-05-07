@@ -115,6 +115,16 @@ If there are other types of requests that should be blocked, please open an issu
 Caveats
 -------
 
+
+This proxy will not do anything unless you actually ensure that your
+Solr container is only being served at 127.0.0.1. If you're using Tomcat with
+the proxy on the same machine, then add the following to your solr instance's
+server.xml:
+
+```xml
+<Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="127\.0\.0\.1"/>
+```
+
 Even with the proxy, the entirety of your solr index is world accessible. If
 you need to lock it down further, consider maintaining a second core with only
 public data, or implementing additional Solr request handlers (via
@@ -127,15 +137,6 @@ application uses, instead.
 Furthermore, this proxy does not guard against simple D.O.S. attacks agains
 solr, for example see [this post on Solr DOS by David
 Smiley](https://groups.google.com/d/msg/ajax-solr/zhrG-CncrRE/HsyRwmR4mEsJ).
-
-Finally, this proxy will not do anything unless you actually ensure that your
-Solr container is only being server at 127.0.0.1. If you're using Tomcat with
-the proxy on the same machine, then add the following to your solr instance's
-server.xml:
-
-```xml
-<Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="127\.0\.0\.1"/>
-```
 
 Solr Security Resources
 -----------------------
