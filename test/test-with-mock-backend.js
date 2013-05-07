@@ -3,8 +3,6 @@ var vows = require('vows'),
     SolrSecurityProxy = require('../solr-security-proxy.js'),
     vowsHelper = require('./vows-helper.js');
 
-var SolrSecurityProxy = require('../solr-security-proxy.js');
-
 var startSimpleBackendServer = function(port) {
   http.createServer(function (req, res) {
     res.writeHead(200, {'Content-Type': 'text/html'});
