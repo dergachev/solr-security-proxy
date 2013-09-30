@@ -60,7 +60,7 @@ var mergeDefaultOptions = function(defaultOptions, options) {
 SolrSecurityProxy.createServer = function(options) {
   var options = mergeDefaultOptions(defaultOptions, options);
 
-  console.log(options);
+  // console.log(options);
 
   // adapted from http://git.io/k5dCxQ
   var server = httpProxy.createServer(function(request, response, proxy) {
@@ -90,8 +90,8 @@ if (require.main === module) {
   // TODO: refactor these; write tests
   var options = {
     'port':           { description: "Listen on this port", default: 8008},
-    'backend.port':   { description: "Solr backend port", default: 8080},
-    'backend.host':   { description: "Solr backend host", default: 'localhost'},
+    'backendPort':   { description: "Solr backend port", default: 8080},
+    'backendHost':   { description: "Solr backend host", default: 'localhost'},
     'validPaths':     { description: "Only allow these paths (comma separated)", default: '/solr/select'},
     'invalidParams':  { description: "Block these query params (comma separated)", default: 'qt,stream'},
     'invalidMethods': { description: "Block these HTTP methods (comma separated)", default: 'POST'},
@@ -102,13 +102,13 @@ if (require.main === module) {
     optimist.showHelp();
   } else {
     var proxyOptions = {
-      backend: argv.backend,
+      backend: { port: argv.backendPort, host:argv.backendHost},
       invalidHttpMethods: argv.invalidMethods.split(","),
       invalidParams: argv.invalidParams.split(","),
       validPaths: argv.validPaths.split(",")
     };
     SolrSecurityProxy.start(argv.port, proxyOptions);
-    util.puts("solr-security-proxy: localhost:" + argv.port + " --> " + argv.backend.host + ":" + argv.backend.port);
+    util.puts("solr-security-proxy: localhost:" + argv.port + " --> " + argv.backendHost + ":" + argv.backendPort);
     return;
   }
 }
