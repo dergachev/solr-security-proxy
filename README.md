@@ -20,7 +20,7 @@ npm install solr-security-proxy
 To start the proxy directly via command-line, run
 
 ```bash
-`npm bin`/solr-security-proxy --port 9090 --backend.host 127.0.0.1 --backend.port 8983
+`npm bin`/solr-security-proxy --port 9090 --backendHost 127.0.0.1 --backendPort 8983
 
 # solr-security-proxy: localhost:9090 --> 127.0.0.1:8983
 ```
@@ -32,8 +32,8 @@ The valid command-line options are as follows:
 
     Options:
       --port            Listen on this port                         [default: 8008]
-      --backend.port    Solr backend port                           [default: 8080]
-      --backend.host    Solr backend host                           [default: "localhost"]
+      --backendPort    Solr backend port                           [default: 8080]
+      --backendHost    Solr backend host                           [default: "localhost"]
       --validPaths      Only allow these paths (comma separated)    [default: "/solr/select"]
       --invalidParams   Block these query params (comma separated)  [default: "qt,stream"]
       --invalidMethods  Block these HTTP methods (comma separated)  [default: "POST"]
