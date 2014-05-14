@@ -44,7 +44,7 @@ To start the server from your own app, potentially overriding some default optio
 
 ```js
 var SolrSecurityProxy = require('solr-security-proxy');
-SolrSecurityProxy.start(8008, {validPaths: ['/solr/core1/select']);
+SolrSecurityProxy.start(8008, {validPaths: ['/solr/core1/select']});
 ```
 
 Here are the default options:
@@ -64,7 +64,7 @@ var defaultOptions = {
 
 ### Daemontools
 
-For notes on how to setup daemontools to automatically start/restart the proxy, see 
+For notes on how to setup daemontools to automatically start/restart the proxy, see
 [DAEMONTOOLS.md](https://github.com/dergachev/solr-security-proxy/blob/master/DAEMONTOOLS.md)
 
 How it works
