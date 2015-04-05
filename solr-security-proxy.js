@@ -62,14 +62,21 @@ SolrSecurityProxy.createServer = function(options) {
 
   // console.log(options);
 
+  var proxyErrorListenerYetToBeAdded = true;
+
   // adapted from http://git.io/k5dCxQ
   var server = httpProxy.createServer(function(request, response, proxy) {
-    if (options.validator(request, options)) {
-      proxy.proxyRequest(request, response, options.backend);
+
+    if (proxyErrorListenerYetToBeAdded) {
       proxy.on('proxyError', function(err, req, res) {
         res.writeHead(502, {  'Content-Type': 'text/plain' });
         res.end('Proxy error: ' + err);
       });
+      proxyErrorListenerYetToBeAdded = false;
+    }
+
+    if (options.validator(request, options)) {
+      proxy.proxyRequest(request, response, options.backend);
     } else {
       response.writeHead(403, 'Illegal request');
       response.write("solrProxy: access denied\n");
